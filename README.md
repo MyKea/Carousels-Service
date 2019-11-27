@@ -1,1 +1,1 @@
-# carousels-module
+# Carousels-Service
