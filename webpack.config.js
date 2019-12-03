@@ -9,6 +9,9 @@ module.exports = {
   devServer: {
     contentBase: './client/dist',
   },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json'],
+  },
   module: {
     rules: [
       {

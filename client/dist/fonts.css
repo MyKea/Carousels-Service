@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Noto Regular";
+  src: local("./fonts/NotoSans-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Bold";
+  src: local("./fonts/NotoSans-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Noto Italic";
+  src: local("./fonts/NotoSans-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Noto Bold Italic";
+  src: local("./fonts/NotoSans-BoldItalic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
