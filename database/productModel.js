@@ -8,11 +8,9 @@ const productSchema = new mongoose.Schema({
   rating: Number,
   reviews: Number,
   options: Boolean,
-  image: Number,
-  related: {
-    loose: [Number],
-    close: [Number],
-  },
+  image: String,
+  loose: [Number],
+  close: [Number],
 });
 
 module.exports = mongoose.model('Product', productSchema);
