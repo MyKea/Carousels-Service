@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
   rating: Number,
   reviews: Number,
   options: Boolean,
-  image: Buffer,
+  image: Number,
   related: {
     loose: [Number],
     close: [Number],
