@@ -1,0 +1,7 @@
+@import "reset.css";
+@import "fonts.css";
+
+#g_carousels {
+  font-family: "Noto Regular";
+  font-size: 24pt;
+}
