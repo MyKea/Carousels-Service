@@ -23,26 +23,38 @@ $font-italic: "Noto Italic";
 $font-bold-italic: "Noto Bold Italic";
 
 $font-color: #111;
+$font-color-secondary: #fff;
+$font-color-tertiary: #666;
 $border-color: #ccc;
 $color-sale-background: #ffce00;
 $color-sale-shadow: #ef4123;
 $color-new-background: #ca5007;
+$color-family-price: #0077c8;
+$arrow-color-inactive: #999;
+$arrow-color-active: #000;
+$arrow-fill-color-hover: #dfdfdf;
+$arrow-fill-color-active: #ccc;
 
 $full-star: url('./res/full-star.svg');
 $empty-star: url('./res/empty-star.svg');
+$arrow-left: url('./res/arrow-left.svg');
+$arrow-right: url('./res/arrow-right.svg');
 
 html {
   font-size: 16px;
 }
 
-
-.g-btn {
+.g-btn,
+.g-btn:active,
+.g-btn:focus,
+.g-btn:hover {
   display: inherit;
   padding: 0;
   border: none;
   text-align: inherit;
   font: inherit;
   color: inherit;
+  outline: none;
   background-color: transparent;
   cursor: pointer;
 }
@@ -76,22 +88,54 @@ html {
     margin-bottom: 3rem;
     width: 100%;
     height: auto;
-    .g-carousel-arrow {
-      width: 5%;
-      height: 100%;
+    .g-arrow-holder {
+      min-width: 5rem;
+      min-height: 5rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      .g-arrow {
+        position: absolute;
+        z-index: 3;
+        min-width: 5rem;
+        min-height: 5rem;
+        background-size: 1.5rem;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+      .g-arrow.left {
+        grid-area: left;
+        background-image: $arrow-left;
+      }
+      .g-arrow.right {
+        grid-area: right;
+        background-image: $arrow-right;
+      }
+      .g-arrow-fill {
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+        transform: scale(0);
+        min-width: 3rem;
+        min-height: 3rem;
+        transition-property: transform, background-color;
+        transition-duration: .3s;
+        transition-timing-function: cubic-bezier(.4,0,0,1);
+      }
     }
-    .g-carousel-arrow.left {
-      grid-area: left;
+    .g-arrow-holder:disabled {
+      opacity: 0.3;
+      cursor: default;
     }
-    .g-carousel-arrow.right {
-      grid-area: right;
+    .g-arrow-holder:focus:enabled  .g-arrow-fill,
+    .g-arrow-holder:hover:enabled  .g-arrow-fill {
+      background-color: $arrow-fill-color-hover;
+      transform: scale(1);
+      z-index: 1;
     }
-    .g-carousel-arrow-image {
-      width: 1.5rem;
-      height: 1.5rem;
+    .g-arrow-holder:active:enabled .g-arrow-fill {
+      transform: scale(0.8333);
+      background-color: $arrow-fill-color-active;
     }
     .g-item-slider {
       grid-area: item;
@@ -100,6 +144,12 @@ html {
       flex-wrap: nowrap;
       overflow: hidden;
       width: 90%;
+      .g-item-container:hover .g-item-image {
+        transform: scale(1.02);
+      }
+      .g-item-container:hover .g-item-name {
+        text-decoration: underline;
+      }
       .g-item-container {
         display: block;
         height: auto;
@@ -115,14 +165,25 @@ html {
           .g-item-image {
             width: 100%;
             height: auto;
-            transform: scale(90%);
+            transition: transform 0.2s ease-out;
           }
         }
         .g-new-item {
           background-color: $color-new-background;
-          border-radius: 5px;
+          font-family: $font-bold;
+          color: $font-color-secondary;
+          width: fit-content;
+          font-size: 0.75rem;
+          padding: 0 0.3rem;
+          border-radius: 0.8rem;
         }
         .g-item-fam-price {
+          font-size: 0.75rem;
+          font-family: $font-bold;
+          background-color: $color-family-price;
+          color: $font-color-secondary;
+          width: fit-content;
+          padding: 0.2rem 0.5rem;
         }
         .g-item-name {
           font-family: $font-bold;
@@ -136,11 +197,15 @@ html {
         .g-item-price {
           font-family: $font-bold;
           line-height: 1;
+          width: fit-content;
           font-size: 1.5rem;
+          margin-top: 0.2rem;
         }
         .g-item-sale {
           background-color: $color-sale-background;
-          box-shadow: $color-sale-shadow 3px 3px 0px;
+          box-shadow: $color-sale-shadow 2px 2px 0px;
+          width: fit-content;
+          padding: 0.2rem 0.5rem;
         }
         .g-item-stars {
           display: inline-block;
@@ -166,12 +231,14 @@ html {
           }
         }
         .g-item-rating {
-          padding-left: 5px;
+          padding-left: 0.3rem;
           display: inline-block;
           font-size: 1rem;
         }
         .g-item-more {
           font-size: 0.75rem;
+          color: $font-color-tertiary;
+          font-family: $font-regular;
         }
       }
     }

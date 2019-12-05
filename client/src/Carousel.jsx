@@ -9,15 +9,17 @@ const Carousel = ({
   <>
     <div className="g-carousel-title">{title}</div>
     <div data-position={position} className="g-carousel-container">
-      <div className="g-carousel-arrow left" data-dir="-1">
-        <img src="./res/arrow-left.svg" alt="Left Arrow" className="g-carousel-arrow-image" />
-      </div>
+      <button type="button" className="g-btn g-arrow-holder" disabled={position === 0} data-dir="-1">
+        <div className="g-arrow left" />
+        <div className="g-arrow-fill" />
+      </button>
       <div className="g-item-slider">
         {items.map((item) => <Item key={item.id} item={item} onItemClick={onItemClick} />)}
       </div>
-      <div className="g-carousel-arrow right" data-dir="1">
-        <img src="./res/arrow-right.svg" alt="Right Arrow" className="g-carousel-arrow-image" />
-      </div>
+      <button type="button" className="g-btn g-arrow-holder" disabled={position === items.length - 4} data-dir="1">
+        <div className="g-arrow right">&nbsp;</div>
+        <div className="g-arrow-fill">&nbsp;</div>
+      </button>
     </div>
   </>
 );

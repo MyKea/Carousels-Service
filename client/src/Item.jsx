@@ -17,7 +17,7 @@ const Item = ({ item, onItemClick }) => (
       <div className="g-item-full-stars" style={{ width: `${(item.rating / 5) * 100}%` }}>&nbsp;</div>
     </div>
     <div className="g-item-rating">{`${item.rating} (${item.reviews})`}</div>
-    {item.options ? <div className="g-item-more">More options available</div> : ''}
+    {item.hasOptions ? <div className="g-item-more">More options available</div> : ''}
   </button>
 );
 
