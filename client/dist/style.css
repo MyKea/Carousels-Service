@@ -19,7 +19,7 @@ html {
   font-size: 16px;
 }
 
-button {
+.g-btn {
   display: inherit;
   padding: 0;
   border: none;

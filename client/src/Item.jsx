@@ -3,7 +3,7 @@ import T from 'prop-types';
 import ENV from './config';
 
 const Item = ({ item, onItemClick }) => (
-  <button type="button" className="g-item-container" data-id={item.id} onClick={onItemClick}>
+  <button type="button" className="g-btn g-item-container" data-id={item.id} onClick={onItemClick}>
     <div className="g-item-image-holder">
       <img className="g-item-image" src={ENV.imageURL + item.image} alt={item.name} />
     </div>

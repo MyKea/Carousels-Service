@@ -17,11 +17,10 @@
   src: url("./res/NotoSans-BoldItalic.ttf");
 }
 
-$font-backup: 'Noto Sans', 'Roboto', 'Open Sans', sans-serif;
-$font-regular: "Noto Regular"/* , $font-backup */;
-$font-bold: "Noto Bold"/* , $font-backup */;
-$font-italic: "Noto Italic"/* , $font-backup */;
-$font-bold-italic: "Noto Bold Italic"/* , $font-backup */;
+$font-regular: "Noto Regular";
+$font-bold: "Noto Bold";
+$font-italic: "Noto Italic";
+$font-bold-italic: "Noto Bold Italic";
 
 $font-color: #111;
 $border-color: #ccc;
@@ -37,7 +36,7 @@ html {
 }
 
 
-button {
+.g-btn {
   display: inherit;
   padding: 0;
   border: none;
