@@ -1,7 +1,162 @@
-@import "reset.css";
-@import "fonts.css";
-
-#g_carousels {
+/* @import "reset.css"; */
+@font-face {
   font-family: "Noto Regular";
-  font-size: 24pt;
+  src: url("./res/NotoSans-Regular.ttf");
 }
+@font-face {
+  font-family: "Noto Bold";
+  src: url("./res/NotoSans-Bold.ttf");
+}
+@font-face {
+  font-family: "Noto Italic";
+  src: url("./res/NotoSans-Italic.ttf");
+}
+@font-face {
+  font-family: "Noto Bold Italic";
+  src: url("./res/NotoSans-BoldItalic.ttf");
+}
+html {
+  font-size: 16px;
+}
+
+button {
+  display: inherit;
+  padding: 0;
+  border: none;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#g-carousels {
+  font-family: "Noto Regular";
+  font-size: 16px;
+  width: 100vw;
+  max-width: 1200px;
+  min-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  color: #111;
+  line-height: 1.5;
+}
+#g-carousels .g-carousel-title {
+  line-height: 1.3334;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-family: "Noto Bold";
+  font-size: 1.875rem;
+  border-top: 1.5px solid #ccc;
+  margin-bottom: 1.5rem;
+  padding-top: 3rem;
+}
+#g-carousels .g-carousel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 3rem;
+  width: 100%;
+  height: auto;
+}
+#g-carousels .g-carousel-container .g-carousel-arrow {
+  width: 5%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#g-carousels .g-carousel-container .g-carousel-arrow.left {
+  grid-area: left;
+}
+#g-carousels .g-carousel-container .g-carousel-arrow.right {
+  grid-area: right;
+}
+#g-carousels .g-carousel-container .g-carousel-arrow-image {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#g-carousels .g-carousel-container .g-item-slider {
+  grid-area: item;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 90%;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container {
+  display: block;
+  height: auto;
+  width: 21%;
+  margin: 0 2%;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-image-holder {
+  width: 100%;
+  height: auto;
+  display: flex;
+  grid-area: image;
+  justify-content: center;
+  align-items: center;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-image-holder .g-item-image {
+  width: 100%;
+  height: auto;
+  transform: scale(90%);
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-new-item {
+  background-color: #ca5007;
+  border-radius: 5px;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-name {
+  font-family: "Noto Bold";
+  font-size: 1rem;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-desc {
+  font-family: "Noto Regular";
+  line-height: 1;
+  font-size: 0.875rem;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-price {
+  font-family: "Noto Bold";
+  line-height: 1;
+  font-size: 1.5rem;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-sale {
+  background-color: #ffce00;
+  box-shadow: #ef4123 3px 3px 0px;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-stars {
+  display: inline-block;
+  position: relative;
+  margin-top: 4px;
+  width: 6rem;
+  height: 1.2rem;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-stars .g-item-empty-stars {
+  width: 100%;
+  height: auto;
+  background: url("./res/empty-star.svg") repeat-x;
+  background-size: 1.2rem;
+  position: absolute;
+  z-index: 2;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-stars .g-item-full-stars {
+  background: url("./res/full-star.svg") repeat-x;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  background-size: 1.2rem;
+  z-index: 3;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-rating {
+  padding-left: 5px;
+  display: inline-block;
+  font-size: 1rem;
+}
+#g-carousels .g-carousel-container .g-item-slider .g-item-container .g-item-more {
+  font-size: 0.75rem;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,180 @@
+/* @import "reset.css"; */
+
+@font-face {
+  font-family: "Noto Regular";
+  src: url("./res/NotoSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Noto Bold";
+  src: url("./res/NotoSans-Bold.ttf");
+}
+@font-face {
+  font-family: "Noto Italic";
+  src: url("./res/NotoSans-Italic.ttf");
+}
+@font-face {
+  font-family: "Noto Bold Italic";
+  src: url("./res/NotoSans-BoldItalic.ttf");
+}
+
+$font-backup: 'Noto Sans', 'Roboto', 'Open Sans', sans-serif;
+$font-regular: "Noto Regular"/* , $font-backup */;
+$font-bold: "Noto Bold"/* , $font-backup */;
+$font-italic: "Noto Italic"/* , $font-backup */;
+$font-bold-italic: "Noto Bold Italic"/* , $font-backup */;
+
+$font-color: #111;
+$border-color: #ccc;
+$color-sale-background: #ffce00;
+$color-sale-shadow: #ef4123;
+$color-new-background: #ca5007;
+
+$full-star: url('./res/full-star.svg');
+$empty-star: url('./res/empty-star.svg');
+
+html {
+  font-size: 16px;
+}
+
+
+button {
+  display: inherit;
+  padding: 0;
+  border: none;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#g-carousels {
+  font-family: $font-regular;
+  font-size: 16px;
+  width: 100vw;
+  max-width: 1200px;
+  min-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  color: $font-color;
+  line-height: 1.5;
+  .g-carousel-title {
+    line-height: 1.3334;
+    letter-spacing: -0.5px;
+    text-align: center;
+    font-family: $font-bold;
+    font-size: 1.875rem;
+    border-top: 1.5px solid $border-color;
+    margin-bottom: 1.5rem;
+    padding-top: 3rem;
+  }
+  .g-carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 3rem;
+    width: 100%;
+    height: auto;
+    .g-carousel-arrow {
+      width: 5%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .g-carousel-arrow.left {
+      grid-area: left;
+    }
+    .g-carousel-arrow.right {
+      grid-area: right;
+    }
+    .g-carousel-arrow-image {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .g-item-slider {
+      grid-area: item;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      width: 90%;
+      .g-item-container {
+        display: block;
+        height: auto;
+        width: 21%;
+        margin: 0 2%;
+        .g-item-image-holder {
+          width: 100%;
+          height: auto;
+          display: flex;
+          grid-area: image;
+          justify-content: center;
+          align-items: center;
+          .g-item-image {
+            width: 100%;
+            height: auto;
+            transform: scale(90%);
+          }
+        }
+        .g-new-item {
+          background-color: $color-new-background;
+          border-radius: 5px;
+        }
+        .g-item-fam-price {
+        }
+        .g-item-name {
+          font-family: $font-bold;
+          font-size: 1rem;
+        }
+        .g-item-desc {
+          font-family: $font-regular;
+          line-height: 1;
+          font-size: .875rem;
+        }
+        .g-item-price {
+          font-family: $font-bold;
+          line-height: 1;
+          font-size: 1.5rem;
+        }
+        .g-item-sale {
+          background-color: $color-sale-background;
+          box-shadow: $color-sale-shadow 3px 3px 0px;
+        }
+        .g-item-stars {
+          display: inline-block;
+          position: relative;
+          margin-top: 4px;
+          width: 6rem;
+          height: 1.2rem;
+          .g-item-empty-stars {
+            width: 100%;
+            height: auto;
+            background: $empty-star repeat-x;
+            background-size: 1.2rem;
+            position: absolute;
+            z-index: 2;
+          }
+          .g-item-full-stars {
+            background: $full-star repeat-x;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            background-size: 1.2rem;
+            z-index: 3;
+          }
+        }
+        .g-item-rating {
+          padding-left: 5px;
+          display: inline-block;
+          font-size: 1rem;
+        }
+        .g-item-more {
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}

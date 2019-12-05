@@ -7,8 +7,11 @@ const productSchema = new mongoose.Schema({
   price: Number,
   rating: Number,
   reviews: Number,
-  options: Boolean,
   image: String,
+  hasOptions: Boolean,
+  isFamilyPriced: Boolean,
+  isOnSale: Boolean,
+  isNewItem: Boolean,
   loose: [Number],
   close: [Number],
 });
