@@ -13,12 +13,33 @@ export default class CarouselStack extends React.Component {
       id,
       looseItems: [],
       loosePosition: 0,
+      looseRelPos: 0,
       closeItems: [],
       closePosition: 0,
+      closeRelPos: 0,
+      carouselWidth: 0,
     };
 
     this.itemClicked = (event) => {
       changeProduct(event.target.dataset.id);
+    };
+
+    this.carouselShift = (event) => {
+      const { state } = this;
+      const { carousel } = event.currentTarget.parentNode.dataset;
+      const position = carousel === 'close' ? 'closePosition' : 'loosePosition';
+      const items = carousel === 'close' ? 'closeItems' : 'looseItems';
+      const relative = carousel === 'close' ? 'closeRelPos' : 'looseRelPos';
+      const direction = event.currentTarget.dataset.dir;
+      const innerSlider = event.currentTarget.parentNode.childNodes[1].childNodes[0];
+      const itemWidth = innerSlider.childNodes[0].getBoundingClientRect().width;
+      const newPosition = Math.min(Math.max(state[position] - (4 * Number(direction)), -items.length + 4), 0);
+      const newRelative = newPosition * itemWidth;
+      console.log(relative, state[relative], newRelative);
+      this.setState({
+        [relative]: newRelative,
+        [position]: newPosition,
+      });
     };
   }
 
@@ -47,12 +68,12 @@ export default class CarouselStack extends React.Component {
 
   render() {
     const {
-      looseItems, loosePosition, closeItems, closePosition,
+      looseItems, loosePosition, looseRelPos, closeItems, closePosition, closeRelPos,
     } = this.state;
     return (
       <>
-        <Carousel items={closeItems} position={closePosition} onItemClick={this.itemClicked} title="Similar products" />
-        <Carousel items={looseItems} position={loosePosition} onItemClick={this.itemClicked} title="You might also like" />
+        <Carousel carousel="close" items={closeItems} position={closePosition} onItemClick={this.itemClicked} onArrowClick={this.carouselShift} relative={closeRelPos} title="Similar products" />
+        <Carousel carousel="loose" items={looseItems} position={loosePosition} onItemClick={this.itemClicked} onArrowClick={this.carouselShift} relative={looseRelPos} title="You might also like" />
       </>
     );
   }

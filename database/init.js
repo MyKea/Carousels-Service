@@ -8,7 +8,7 @@ mongoose.connect(`mongodb://${ENV.dbUser}:${ENV.dbPass}@${ENV.dbHost}:${ENV.dbPo
 
 
 Product.bulkWrite([
-  { replaceOne: { filter: { id: 1 }, upsert: true, replacement: { id: 1, name: 'ANTILOP', description: 'High chair with tray, white silver color, silver color', price: 19.99, rating: 4.2, reviews: 24, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '001.webp', close: [3, 10, 2, 4], loose: [6, 12, 11, 40] } } },
+  { replaceOne: { filter: { id: 1 }, upsert: true, replacement: { id: 1, name: 'ANTILOP', description: 'High chair with tray, white silver color, silver color', price: 19.99, rating: 4.2, reviews: 24, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '001.webp', close: [3, 10, 2, 4, 1, 5, 6, 7, 8, 9, 11, 12], loose: [6, 12, 11, 40] } } },
   { replaceOne: { filter: { id: 2 }, upsert: true, replacement: { id: 2, name: 'TOBIAS', description: 'Chair, clear, chrome plated', price: 79.00, rating: 4.3, reviews: 73, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '002.webp', close: [], loose: [] } } },
   { replaceOne: { filter: { id: 3 }, upsert: true, replacement: { id: 3, name: 'HAVSTEN', description: 'Chair, in/outdoor, beige, 32 5/8x37x35 3/8 "', price: 260.00, rating: 5.0, reviews: 1, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '003.webp', close: [], loose: [] } } },
   { replaceOne: { filter: { id: 4 }, upsert: true, replacement: { id: 4, name: 'GLENN', description: 'Bar stool, white, chrome plated, 26 "', price: 79.99, rating: 4.5, reviews: 35, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: true, image: '004.webp', close: [], loose: [] } } },
