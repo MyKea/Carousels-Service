@@ -14,7 +14,12 @@ const Carousel = ({
         <div className="g-arrow-fill" />
       </button>
       <div className="g-item-slider-outer">
-        <div className="g-item-slider" style={{ left: relative, width: `${(items.length / 4) * 100}%` }}>
+        <div
+          className="g-item-slider"
+          style={{
+            width: `${(items.length / 4) * 100}%`,
+          }}
+        >
           {items.map((item) => <Item key={item.id} item={item} containerWidth={(items.length / 4) * 100} onItemClick={onItemClick} />)}
         </div>
       </div>

@@ -27,18 +27,37 @@ export default class CarouselStack extends React.Component {
     this.carouselShift = (event) => {
       const { state } = this;
       const { carousel } = event.currentTarget.parentNode.dataset;
-      const position = carousel === 'close' ? 'closePosition' : 'loosePosition';
-      const items = carousel === 'close' ? 'closeItems' : 'looseItems';
-      const relative = carousel === 'close' ? 'closeRelPos' : 'looseRelPos';
+      const position = `${carousel}Position`;
+      const items = `${carousel}Items`;
+      const relative = `${carousel}RelPos`;
       const direction = event.currentTarget.dataset.dir;
       const innerSlider = event.currentTarget.parentNode.childNodes[1].childNodes[0];
       const itemWidth = innerSlider.childNodes[0].getBoundingClientRect().width;
-      const newPosition = Math.min(Math.max(state[position] - (4 * Number(direction)), -items.length + 4), 0);
+      const newPosition = Math.min(Math.max(state[position] - (4 * Number(direction)), -state[items].length + 4), 0);
+      if (newPosition === state[position]) {
+        return;
+      }
       const newRelative = newPosition * itemWidth;
-      console.log(relative, state[relative], newRelative);
+      const oldRelative = state[relative];
+      innerSlider.classList.remove(`g-animate-${carousel}`);
+      (() => innerSlider.offsetWidth)();
+      let sheet = document.styleSheets[0];
+      let i = 0;
+      for (i; i < sheet.rules.length - 1; i += 1) {
+        if (sheet.rules[i].name === `g-carousel-slide-${carousel}`) {
+          sheet.deleteRule(i);
+        }
+      }
+      sheet.insertRule(`
+        @keyframes g-carousel-slide-${carousel} {
+          from {left: ${oldRelative}}
+          to {left: ${newRelative}}
+        }
+      `);
+      innerSlider.classList.add(`g-animate-${carousel}`);
       this.setState({
-        [relative]: newRelative,
         [position]: newPosition,
+        [relative]: newRelative,
       });
     };
   }
