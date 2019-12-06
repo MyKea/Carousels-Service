@@ -3,4 +3,4 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CarouselStack from './CarouselStack';
 
-ReactDOM.render(<CarouselStack id={1} changeProduct={() => {}} />, document.getElementById('g_carousels'));
+ReactDOM.render(<CarouselStack id={1} changeProduct={() => {}} />, document.getElementById('g-carousels'));

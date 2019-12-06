@@ -1,0 +1,246 @@
+/* @import "reset.css"; */
+
+@font-face {
+  font-family: "Noto Regular";
+  src: url("./res/NotoSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Noto Bold";
+  src: url("./res/NotoSans-Bold.ttf");
+}
+@font-face {
+  font-family: "Noto Italic";
+  src: url("./res/NotoSans-Italic.ttf");
+}
+@font-face {
+  font-family: "Noto Bold Italic";
+  src: url("./res/NotoSans-BoldItalic.ttf");
+}
+
+$font-regular: "Noto Regular";
+$font-bold: "Noto Bold";
+$font-italic: "Noto Italic";
+$font-bold-italic: "Noto Bold Italic";
+
+$font-color: #111;
+$font-color-secondary: #fff;
+$font-color-tertiary: #666;
+$border-color: #ccc;
+$color-sale-background: #ffce00;
+$color-sale-shadow: #ef4123;
+$color-new-background: #ca5007;
+$color-family-price: #0077c8;
+$arrow-color-inactive: #999;
+$arrow-color-active: #000;
+$arrow-fill-color-hover: #dfdfdf;
+$arrow-fill-color-active: #ccc;
+
+$full-star: url('./res/full-star.svg');
+$empty-star: url('./res/empty-star.svg');
+$arrow-left: url('./res/arrow-left.svg');
+$arrow-right: url('./res/arrow-right.svg');
+
+html {
+  font-size: 16px;
+}
+
+.g-btn,
+.g-btn:active,
+.g-btn:focus,
+.g-btn:hover {
+  display: inherit;
+  padding: 0;
+  border: none;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#g-carousels {
+  font-family: $font-regular;
+  font-size: 16px;
+  width: 100vw;
+  max-width: 1200px;
+  min-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  color: $font-color;
+  line-height: 1.5;
+  .g-carousel-title {
+    line-height: 1.3334;
+    letter-spacing: -0.5px;
+    text-align: center;
+    font-family: $font-bold;
+    font-size: 1.875rem;
+    border-top: 1.5px solid $border-color;
+    margin-bottom: 1.5rem;
+    padding-top: 3rem;
+  }
+  .g-carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 3rem;
+    width: 100%;
+    height: auto;
+    .g-arrow-holder {
+      min-width: 5rem;
+      min-height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .g-arrow {
+        position: absolute;
+        z-index: 3;
+        min-width: 5rem;
+        min-height: 5rem;
+        background-size: 1.5rem;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+      .g-arrow.left {
+        grid-area: left;
+        background-image: $arrow-left;
+      }
+      .g-arrow.right {
+        grid-area: right;
+        background-image: $arrow-right;
+      }
+      .g-arrow-fill {
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+        transform: scale(0);
+        min-width: 3rem;
+        min-height: 3rem;
+        transition-property: transform, background-color;
+        transition-duration: .3s;
+        transition-timing-function: cubic-bezier(.4,0,0,1);
+      }
+    }
+    .g-arrow-holder:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .g-arrow-holder:focus:enabled  .g-arrow-fill,
+    .g-arrow-holder:hover:enabled  .g-arrow-fill {
+      background-color: $arrow-fill-color-hover;
+      transform: scale(1);
+      z-index: 1;
+    }
+    .g-arrow-holder:active:enabled .g-arrow-fill {
+      transform: scale(0.8333);
+      background-color: $arrow-fill-color-active;
+    }
+    .g-item-slider {
+      grid-area: item;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      width: 90%;
+      .g-item-container:hover .g-item-image {
+        transform: scale(1.02);
+      }
+      .g-item-container:hover .g-item-name {
+        text-decoration: underline;
+      }
+      .g-item-container {
+        display: block;
+        height: auto;
+        width: 21%;
+        margin: 0 2%;
+        .g-item-image-holder {
+          width: 100%;
+          height: auto;
+          display: flex;
+          grid-area: image;
+          justify-content: center;
+          align-items: center;
+          .g-item-image {
+            width: 100%;
+            height: auto;
+            transition: transform 0.2s ease-out;
+          }
+        }
+        .g-new-item {
+          background-color: $color-new-background;
+          font-family: $font-bold;
+          color: $font-color-secondary;
+          width: fit-content;
+          font-size: 0.75rem;
+          padding: 0 0.3rem;
+          border-radius: 0.8rem;
+        }
+        .g-item-fam-price {
+          font-size: 0.75rem;
+          font-family: $font-bold;
+          background-color: $color-family-price;
+          color: $font-color-secondary;
+          width: fit-content;
+          padding: 0.2rem 0.5rem;
+        }
+        .g-item-name {
+          font-family: $font-bold;
+          font-size: 1rem;
+        }
+        .g-item-desc {
+          font-family: $font-regular;
+          line-height: 1;
+          font-size: .875rem;
+        }
+        .g-item-price {
+          font-family: $font-bold;
+          line-height: 1;
+          width: fit-content;
+          font-size: 1.5rem;
+          margin-top: 0.2rem;
+        }
+        .g-item-sale {
+          background-color: $color-sale-background;
+          box-shadow: $color-sale-shadow 2px 2px 0px;
+          width: fit-content;
+          padding: 0.2rem 0.5rem;
+        }
+        .g-item-stars {
+          display: inline-block;
+          position: relative;
+          margin-top: 4px;
+          width: 6rem;
+          height: 1.2rem;
+          .g-item-empty-stars {
+            width: 100%;
+            height: auto;
+            background: $empty-star repeat-x;
+            background-size: 1.2rem;
+            position: absolute;
+            z-index: 2;
+          }
+          .g-item-full-stars {
+            background: $full-star repeat-x;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            background-size: 1.2rem;
+            z-index: 3;
+          }
+        }
+        .g-item-rating {
+          padding-left: 0.3rem;
+          display: inline-block;
+          font-size: 1rem;
+        }
+        .g-item-more {
+          font-size: 0.75rem;
+          color: $font-color-tertiary;
+          font-family: $font-regular;
+        }
+      }
+    }
+  }
+}

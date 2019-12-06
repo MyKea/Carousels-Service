@@ -51,13 +51,17 @@ export default class CarouselStack extends React.Component {
     } = this.state;
     return (
       <>
-        <Carousel items={closeItems} position={closePosition} onItemClick={this.itemClicked} />
-        <Carousel items={looseItems} position={loosePosition} onItemClick={this.itemClicked} />
+        <Carousel items={closeItems} position={closePosition} onItemClick={this.itemClicked} title="Similar products" />
+        <Carousel items={looseItems} position={loosePosition} onItemClick={this.itemClicked} title="You might also like" />
       </>
     );
   }
 }
 CarouselStack.propTypes = {
-  id: T.number.isRequired,
-  changeProduct: T.func.isRequired,
+  id: T.number,
+  changeProduct: T.func,
+};
+CarouselStack.defaultProps = {
+  id: 40,
+  changeProduct: () => {},
 };
