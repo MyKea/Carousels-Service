@@ -20,11 +20,14 @@ export default class CarouselStack extends React.Component {
       carouselWidth: 0,
     };
 
+    this.canSlideCarousel = true;
+
     this.itemClicked = (event) => {
       changeProduct(event.target.dataset.id);
     };
 
     this.carouselShift = (event) => {
+      if (!this.canSlideCarousel) return;
       const { state } = this;
       const { carousel } = event.currentTarget.parentNode.dataset;
       const position = `${carousel}Position`;
@@ -34,9 +37,8 @@ export default class CarouselStack extends React.Component {
       const innerSlider = event.currentTarget.parentNode.childNodes[1].childNodes[0];
       const itemWidth = innerSlider.childNodes[0].getBoundingClientRect().width;
       const newPosition = Math.min(Math.max(state[position] - (4 * Number(direction)), -state[items].length + 4), 0);
-      if (newPosition === state[position]) {
-        return;
-      }
+      if (newPosition === state[position]) return;
+      this.canSlideCarousel = false;
       const newRelative = newPosition * itemWidth;
       const oldRelative = state[relative];
       innerSlider.classList.remove(`g-animate-${carousel}`);
@@ -55,6 +57,7 @@ export default class CarouselStack extends React.Component {
         }
       `);
       innerSlider.classList.add(`g-animate-${carousel}`);
+      setTimeout(() => { this.canSlideCarousel = true; }, 600);
       this.setState({
         [position]: newPosition,
         [relative]: newRelative,

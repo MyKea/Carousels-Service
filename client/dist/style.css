@@ -126,11 +126,11 @@ html {
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider.g-animate-close {
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-  animation: g-carousel-slide-close 0.5s steps(50) forwards;
+  animation: g-carousel-slide-close 0.6s forwards;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider.g-animate-loose {
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-  animation: g-carousel-slide-loose 0.5s steps(50) forwards;
+  animation: g-carousel-slide-loose 0.6s forwards;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container:hover .g-item-image {
   transform: scale(1.02);
