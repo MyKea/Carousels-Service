@@ -1,4 +1,3 @@
-/* @import "reset.css"; */
 
 @font-face {
   font-family: "Noto Regular";
@@ -62,7 +61,7 @@ html {
 #g-carousels {
   font-family: $font-regular;
   font-size: 16px;
-  width: 100vw;
+  width: 97vw;
   max-width: 1200px;
   min-width: 400px;
   height: auto;
@@ -103,11 +102,11 @@ html {
         background-position: 50%;
         background-repeat: no-repeat;
       }
-      .g-arrow.left {
+      .g-arrow.g-left {
         grid-area: left;
         background-image: $arrow-left;
       }
-      .g-arrow.right {
+      .g-arrow.g-right {
         grid-area: right;
         background-image: $arrow-right;
       }
@@ -137,108 +136,119 @@ html {
       transform: scale(0.8333);
       background-color: $arrow-fill-color-active;
     }
-    .g-item-slider {
-      grid-area: item;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+    .g-item-slider-outer {
+      display: block;
       overflow: hidden;
-      width: 90%;
-      .g-item-container:hover .g-item-image {
-        transform: scale(1.02);
-      }
-      .g-item-container:hover .g-item-name {
-        text-decoration: underline;
-      }
-      .g-item-container {
-        display: block;
-        height: auto;
-        width: 21%;
-        margin: 0 2%;
-        .g-item-image-holder {
-          width: 100%;
+      width: 100%;
+      .g-item-slider {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        &.g-animate-close {
+          animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+          animation: g-carousel-slide-close .6s forwards;
+        }
+        &.g-animate-loose {
+          animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+          animation: g-carousel-slide-loose .6s forwards;
+        }
+        .g-item-container:hover .g-item-image {
+          transform: scale(1.02);
+        }
+        .g-item-container:hover .g-item-name {
+          text-decoration: underline;
+        }
+        .g-item-container {
+          display: block;
           height: auto;
-          display: flex;
-          grid-area: image;
-          justify-content: center;
-          align-items: center;
-          .g-item-image {
+          width: 25%;
+          padding: 0 2%;
+          .g-item-image-holder {
             width: 100%;
             height: auto;
-            transition: transform 0.2s ease-out;
+            display: flex;
+            grid-area: image;
+            justify-content: center;
+            align-items: center;
+            .g-item-image {
+              width: 100%;
+              height: auto;
+              transition: transform 0.2s ease-out;
+            }
           }
-        }
-        .g-new-item {
-          background-color: $color-new-background;
-          font-family: $font-bold;
-          color: $font-color-secondary;
-          width: fit-content;
-          font-size: 0.75rem;
-          padding: 0 0.3rem;
-          border-radius: 0.8rem;
-        }
-        .g-item-fam-price {
-          font-size: 0.75rem;
-          font-family: $font-bold;
-          background-color: $color-family-price;
-          color: $font-color-secondary;
-          width: fit-content;
-          padding: 0.2rem 0.5rem;
-        }
-        .g-item-name {
-          font-family: $font-bold;
-          font-size: 1rem;
-        }
-        .g-item-desc {
-          font-family: $font-regular;
-          line-height: 1;
-          font-size: .875rem;
-        }
-        .g-item-price {
-          font-family: $font-bold;
-          line-height: 1;
-          width: fit-content;
-          font-size: 1.5rem;
-          margin-top: 0.2rem;
-        }
-        .g-item-sale {
-          background-color: $color-sale-background;
-          box-shadow: $color-sale-shadow 2px 2px 0px;
-          width: fit-content;
-          padding: 0.2rem 0.5rem;
-        }
-        .g-item-stars {
-          display: inline-block;
-          position: relative;
-          margin-top: 4px;
-          width: 6rem;
-          height: 1.2rem;
-          .g-item-empty-stars {
-            width: 100%;
-            height: auto;
-            background: $empty-star repeat-x;
-            background-size: 1.2rem;
-            position: absolute;
-            z-index: 2;
+          .g-new-item {
+            background-color: $color-new-background;
+            font-family: $font-bold;
+            color: $font-color-secondary;
+            width: fit-content;
+            font-size: 0.75rem;
+            padding: 0 0.3rem;
+            border-radius: 0.8rem;
           }
-          .g-item-full-stars {
-            background: $full-star repeat-x;
-            width: 100%;
-            height: auto;
-            position: absolute;
-            background-size: 1.2rem;
-            z-index: 3;
+          .g-item-fam-price {
+            font-size: 0.75rem;
+            font-family: $font-bold;
+            background-color: $color-family-price;
+            color: $font-color-secondary;
+            width: fit-content;
+            padding: 0.2rem 0.5rem;
           }
-        }
-        .g-item-rating {
-          padding-left: 0.3rem;
-          display: inline-block;
-          font-size: 1rem;
-        }
-        .g-item-more {
-          font-size: 0.75rem;
-          color: $font-color-tertiary;
-          font-family: $font-regular;
+          .g-item-name {
+            font-family: $font-bold;
+            font-size: 1rem;
+          }
+          .g-item-desc {
+            font-family: $font-regular;
+            line-height: 1;
+            font-size: .875rem;
+          }
+          .g-item-price {
+            font-family: $font-bold;
+            line-height: 1;
+            width: fit-content;
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+          }
+          .g-item-sale {
+            background-color: $color-sale-background;
+            box-shadow: $color-sale-shadow 2px 2px 0px;
+            width: fit-content;
+            padding: 0.2rem 0.5rem;
+          }
+          .g-item-stars {
+            display: inline-block;
+            position: relative;
+            margin-top: 4px;
+            width: 6rem;
+            height: 1.2rem;
+            .g-item-empty-stars {
+              width: 100%;
+              height: auto;
+              background: $empty-star repeat-x;
+              background-size: 1.2rem;
+              position: absolute;
+              z-index: 2;
+            }
+            .g-item-full-stars {
+              background: $full-star repeat-x;
+              width: 100%;
+              height: auto;
+              position: absolute;
+              background-size: 1.2rem;
+              z-index: 3;
+            }
+          }
+          .g-item-rating {
+            padding-left: 0.3rem;
+            display: inline-block;
+            font-size: 1rem;
+          }
+          .g-item-more {
+            font-size: 0.75rem;
+            color: $font-color-tertiary;
+            font-family: $font-regular;
+          }
         }
       }
     }

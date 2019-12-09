@@ -2,8 +2,8 @@ import React from 'react';
 import T from 'prop-types';
 import ENV from './config';
 
-const Item = ({ item, onItemClick }) => (
-  <button type="button" className="g-btn g-item-container" data-id={item.id} onClick={onItemClick}>
+const Item = ({ item, onItemClick, containerWidth }) => (
+  <button type="button" className="g-btn g-item-container" style={{ padding: `0 ${(100 / containerWidth) * 2}%` }} data-id={item.id} onClick={onItemClick}>
     <div className="g-item-image-holder">
       <img className="g-item-image" src={ENV.imageURL + item.image} alt={item.name} />
     </div>
@@ -24,6 +24,7 @@ const Item = ({ item, onItemClick }) => (
 Item.propTypes = {
   item: T.shape(ENV.productSchema).isRequired,
   onItemClick: T.func.isRequired,
+  containerWidth: T.number.isRequired,
 };
 
 export default Item;
