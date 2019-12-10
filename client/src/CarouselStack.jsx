@@ -124,6 +124,7 @@ export default class CarouselStack extends React.Component {
   }
 
   componentDidMount() {
+    console.log('component mounted')
     this.getRelatedItems();
     window.addEventListener('resize', this.onWindowResize);
   }
@@ -134,11 +135,13 @@ export default class CarouselStack extends React.Component {
 
   getRelatedItems() {
     const { id } = this.state;
+    
     Axios.all([
-      Axios.get(`http://${ENV.serverURL}:${ENV.serverPort}/products/${id}/related/close`),
-      Axios.get(`http://${ENV.serverURL}:${ENV.serverPort}/products/${id}/related/loose`),
+      Axios.get(`http://${ENV.serverHosted}/products/${id}/related/close`),
+      Axios.get(`http://${ENV.serverHosted}/products/${id}/related/loose`),
     ])
       .then((docsList) => {
+        console.log('docslist');
         this.setState({
           closeItems: docsList[0].data,
           closePosition: 0,

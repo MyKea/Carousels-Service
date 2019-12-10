@@ -3,6 +3,7 @@ import T from 'prop-types';
 const ENV = {
   serverPort: '3015',
   serverURL: 'localhost',
+  serverHosted: 'ikeaprojectcarouselsservice-env.8fbp5upagt.us-west-2.elasticbeanstalk.com',
   imageURL: 'https://team-meatballs-ikea-carousel-images.s3.us-east-2.amazonaws.com/',
   productSchema: {
     id: T.number,

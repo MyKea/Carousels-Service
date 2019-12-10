@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const Product = require('./productModel');
 const ENV = require('../config');
 
-mongoose.connect(`mongodb://${ENV.dbUser}:${ENV.dbPass}@${ENV.dbHost}:${ENV.dbPort}/${ENV.dbName}`, { useNewUrlParser: true, useUnifiedTopology: true });
+// const DB_PATH = `mongodb://${ENV.dbUser}:${ENV.dbPass}@${ENV.dbHost}:${ENV.dbPort}/${ENV.dbName}`;
+const DB_PATH = ENV.dbLong;
+
+mongoose.connect(DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 Product.bulkWrite([
@@ -20,6 +23,7 @@ Product.bulkWrite([
   { replaceOne: { filter: { id: 10 }, upsert: true, replacement: { id: 10, name: 'DIETMAR', description: 'Underframe for armchair, chrome plated', price: 40.00, rating: 5.0, reviews: 3, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '010.webp', close: [], loose: [] } } },
   { replaceOne: { filter: { id: 11 }, upsert: true, replacement: { id: 11, name: 'LANGUR', description: 'High chair tray, white', price: 10.00, rating: 0, reviews: 0, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '011.webp', close: [], loose: [] } } },
   { replaceOne: { filter: { id: 12 }, upsert: true, replacement: { id: 12, name: 'JOKKMOKK', description: 'Table and 4 chairs, antique stain', price: 129.00, rating: 4.6, reviews: 143, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '012.webp', close: [], loose: [] } } },
+  { replaceOne: { filter: { id: 13 }, upsert: true, replacement: { id: 13, name: 'TEST', description: 'TESTING', price: 666, rating: 5, reviews: 42, options: false, image: '013.webp', close: [], loose: [] } } },
   // 40
   { replaceOne: { filter: { id: 40 }, upsert: true, replacement: { id: 40, name: 'ALLEMANSRÄTTEN', description: 'Meatballs, frozen, 84% meat content', price: 8.99, rating: 5.0, reviews: 7777, isOnSale: false, isFamilyPriced: false, isNewItem: false, hasOptions: false, image: '040.webp', close: [81], loose: [] } } },
 ], (err) => {
