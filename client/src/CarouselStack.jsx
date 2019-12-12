@@ -10,7 +10,7 @@ export default class CarouselStack extends React.Component {
   constructor(props) {
     super(props);
 
-    const { id, changeProduct } = props;
+    const { id } = props;
     this.state = {
       id,
       looseItems: [],
@@ -28,7 +28,18 @@ export default class CarouselStack extends React.Component {
     this.canSlideCarousel = true;
 
     this.itemClicked = (event) => {
-      changeProduct(event.target.dataset.id);
+      console.log(event.target, event.currentTarget);
+      this.changeProduct(event.currentTarget.dataset.id);
+    };
+
+    this.changeProduct = (productId) => {
+      console.log(productId);
+      window.dispatchEvent(new CustomEvent('productChanged', {
+        bubbles: true,
+        detail: {
+          productId,
+        },
+      }));
     };
 
     this.carouselShift = (event) => {
@@ -78,7 +89,7 @@ export default class CarouselStack extends React.Component {
     }) => {
       innerSlider.classList.remove(`g-animate-${type}`);
       (() => innerSlider.offsetWidth)();
-      const sheet = document.styleSheets[0];
+      const sheet = document.styleSheets[6];
       let i = 0;
       for (i; i < sheet.rules.length - 1; i += 1) {
         if (sheet.rules[i].name === `g-carousel-slide-${type}`) {
@@ -124,9 +135,16 @@ export default class CarouselStack extends React.Component {
   }
 
   componentDidMount() {
-    console.log('component mounted')
     this.getRelatedItems();
     window.addEventListener('resize', this.onWindowResize);
+    window.addEventListener('productChanged', (event) => {
+      this.setState({
+        id: event.detail.productId,
+      }, () => {
+        console.log('Carousels got "productChanged" message with id: ' + event.detail.productId);
+        this.getRelatedItems();
+      });
+    });
   }
 
   componentWillUnmount() {
@@ -135,13 +153,12 @@ export default class CarouselStack extends React.Component {
 
   getRelatedItems() {
     const { id } = this.state;
-    
+    console.log(id);
     Axios.all([
-      Axios.get(`http://${ENV.serverHosted}/products/${id}/related/close`),
-      Axios.get(`http://${ENV.serverHosted}/products/${id}/related/loose`),
+      Axios.get('/related/close', { baseURL: `http://${ENV.serverHosted}/products/${id}` }),
+      Axios.get('/related/loose', { baseURL: `http://${ENV.serverHosted}/products/${id}` }),
     ])
       .then((docsList) => {
-        console.log('docslist');
         this.setState({
           closeItems: docsList[0].data,
           closePosition: 0,
@@ -188,9 +205,7 @@ export default class CarouselStack extends React.Component {
 }
 CarouselStack.propTypes = {
   id: T.number,
-  changeProduct: T.func,
 };
 CarouselStack.defaultProps = {
   id: 40,
-  changeProduct: () => {},
 };
