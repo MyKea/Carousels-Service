@@ -20,7 +20,7 @@
   max-width: 1200px;
   min-width: 400px;
   height: auto;
-  margin: 0 auto;
+  margin: 4rem auto;
   color: #111;
   line-height: 1.5;
 }
@@ -28,10 +28,9 @@
   line-height: 1.3334;
   letter-spacing: -0.5px;
   text-align: center;
-  font-family: "Noto Sans";
-font-weight: bold;
+  font-weight: bold;
   font-size: 1.875rem;
-  border-top: 1.5px solid #ccc;
+  border-top: 1px solid #ccc;
   margin-bottom: 1.5rem;
   padding-top: 3rem;
 }
@@ -140,8 +139,7 @@ font-weight: bold;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-new-item {
   background-color: #ca5007;
-  font-family: "Noto Sans";
-font-weight: bold;
+  font-weight: bold;
   color: #fff;
   width: fit-content;
   font-size: 0.75rem;
@@ -150,26 +148,23 @@ font-weight: bold;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-item-fam-price {
   font-size: 0.75rem;
-  font-family: "Noto Sans";
-font-weight: bold;
+  font-weight: bold;
   background-color: #0077c8;
   color: #fff;
   width: fit-content;
   padding: 0.2rem 0.5rem;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-item-name {
-  font-family: "Noto Sans";
-font-weight: bold;
+  font-weight: bold;
   font-size: 1rem;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-item-desc {
-  font-family: "Noto Sans";
+  font-weight: normal;
   line-height: 1;
   font-size: 0.875rem;
 }
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-item-price {
-  font-family: "Noto Sans";
-font-weight: bold;
+  font-weight: bold;
   line-height: 1;
   width: fit-content;
   font-size: 1.5rem;
@@ -212,7 +207,7 @@ font-weight: bold;
 #g-carousels .g-carousel-container .g-item-slider-outer .g-item-slider .g-item-container .g-item-more {
   font-size: 0.75rem;
   color: #666;
-  font-family: "Noto Sans";
+  font-weight: normal;
 }
 
 /*# sourceMappingURL=style.css.map */
