@@ -4,7 +4,7 @@ import ENV from './config';
 import Item from './Item';
 
 const Carousel = ({
-  items, position, onItemClick, title, onArrowClick, carousel, smallWindow, onCarouselScroll, scrollPosition,
+  items, position, onItemClick, title, onArrowClick, carousel, smallWindow, onCarouselScroll,
 }) => (
   <>
     <div className="g-carousel-title">{title}</div>
