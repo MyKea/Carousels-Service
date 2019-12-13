@@ -28,12 +28,17 @@ export default class CarouselStack extends React.Component {
     this.canSlideCarousel = true;
 
     this.itemClicked = (event) => {
-      console.log(event.target, event.currentTarget);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
       this.changeProduct(event.currentTarget.dataset.id);
+      const reset = {
+        currentTarget: event.currentTarget.parentNode.parentNode.parentNode.childNodes[0],
+      };
+      reset.currentTarget.dataset.dir = -4;
+      this.carouselShift(reset);
     };
 
     this.changeProduct = (productId) => {
-      console.log(productId);
       window.dispatchEvent(new CustomEvent('productChanged', {
         bubbles: true,
         detail: {
