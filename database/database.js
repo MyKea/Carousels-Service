@@ -26,3 +26,26 @@ module.exports.getRelatedProducts = (idList) => new Promise((pass, fail) => {
     }
   });
 });
+
+module.exports.updateProductReviews = ({ id, rating }) => new Promise((pass, fail) => {
+  console.log('updating reviews');
+  console.log(id, rating);
+  Product.find({ id }, (err, doc) => {
+    if (err) {
+      fail(err);
+    } else {
+      console.log(doc)
+      const newTotal = (doc[0].rating * doc[0].reviews) + rating;
+      const newCount = doc[0].reviews + 1;
+      const newRating = newTotal / newCount;
+      console.log(newTotal, newCount, newRating)
+      Product.updateOne({ id }, { rating: newRating, reviews: newCount }, (err2, result) => {
+        if (err2) {
+          fail(err2);
+        } else {
+          pass(result);
+        }
+      });
+    }
+  });
+});

@@ -2,17 +2,15 @@
 /* eslint-env browser */
 import React from 'react';
 import Axios from 'axios';
-import T from 'prop-types';
 import Carousel from './Carousel';
 import ENV from './config';
 
 export default class CarouselStack extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
-    const { id } = props;
     this.state = {
-      id,
+      productId: 3,
       looseItems: [],
       loosePosition: 0,
       looseRelPos: 0,
@@ -45,17 +43,24 @@ export default class CarouselStack extends React.Component {
           productId,
         },
       }));
+      this.setState({
+        productId,
+      }, () => {
+        this.getRelatedItems();
+      });
     };
 
     this.carouselShift = (event) => {
       if (!this.canSlideCarousel) return;
+
       const { type, outerSlider, button, oldPosition, oldRelative, innerSlider, items } = this.getSlideVariables(event);
       const { newPosition, newRelative } = this.calculateNewPosition({ button, items, oldPosition });
+
       this.animateCarousel({ type, innerSlider, oldRelative, newRelative });
-      this.canSlideCarousel = false;
-      setTimeout(() => { this.canSlideCarousel = true; }, 600);
+
       const scrollPercent = this.calculateScrollPercent({ items, newPosition });
       const newScrollPos = scrollPercent * (innerSlider.clientWidth - outerSlider.clientWidth);
+
       this.setState({
         [`${type}Position`]: newPosition,
         [`${type}RelPos`]: newRelative,
@@ -92,11 +97,12 @@ export default class CarouselStack extends React.Component {
     this.animateCarousel = ({
       type, innerSlider, oldRelative, newRelative,
     }) => {
+      this.canSlideCarousel = false;
       innerSlider.classList.remove(`g-animate-${type}`);
       (() => innerSlider.offsetWidth)();
-      const sheet = document.styleSheets[6];
+      const sheet = document.styleSheets[this.animationSheetIndex];
       let i = 0;
-      for (i; i < sheet.rules.length - 1; i += 1) {
+      for (i; i < sheet.rules.length; i += 1) {
         if (sheet.rules[i].name === `g-carousel-slide-${type}`) {
           sheet.deleteRule(i);
         }
@@ -108,6 +114,7 @@ export default class CarouselStack extends React.Component {
         }
       `);
       innerSlider.classList.add(`g-animate-${type}`);
+      setTimeout(() => { this.canSlideCarousel = true; }, 600);
     };
 
     this.onWindowResize = () => {
@@ -116,9 +123,9 @@ export default class CarouselStack extends React.Component {
       });
     };
 
-    this.calculateSnapPosition = () => {
+    // this.calculateSnapPosition = () => {
 
-    };
+    // };
 
     this.calculateScrollPercent = ({ items, newPosition }) => {
       const indexSpan = Math.abs(this.getMinIndex(items));
@@ -136,6 +143,15 @@ export default class CarouselStack extends React.Component {
       });
     };
 
+    this.updateReviews = ({ id, newRating }) => {
+      const rating = typeof newRating !== 'number' ? 0 : newRating;
+      const review = { id, rating };
+      Axios.patch('/reviews/update', review, { baseURL: `http://${ENV.serverHosted}` })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
     this.getMinIndex = (items) => -items.length + 4;
   }
 
@@ -146,10 +162,16 @@ export default class CarouselStack extends React.Component {
       this.setState({
         id: event.detail.productId,
       }, () => {
-        console.log('Carousels got "productChanged" message with id: ' + event.detail.productId);
         this.getRelatedItems();
       });
     });
+    window.addEventListener('newReview', (event) => {
+      this.updateReviews(event.detail);
+    });
+    this.sheetNumber = document.styleSheets.length;
+    this.animationSheetIndex = document.styleSheets.length;
+    this.animationSheet = document.createElement('style');
+    document.head.appendChild(this.animationSheet);
   }
 
   componentWillUnmount() {
@@ -157,8 +179,7 @@ export default class CarouselStack extends React.Component {
   }
 
   getRelatedItems() {
-    const { id } = this.state;
-    console.log(id);
+    const { productId: id } = this.state;
     Axios.all([
       Axios.get('/related/close', { baseURL: `http://${ENV.serverHosted}/products/${id}` }),
       Axios.get('/related/loose', { baseURL: `http://${ENV.serverHosted}/products/${id}` }),
@@ -208,9 +229,3 @@ export default class CarouselStack extends React.Component {
     );
   }
 }
-CarouselStack.propTypes = {
-  id: T.number,
-};
-CarouselStack.defaultProps = {
-  id: 40,
-};

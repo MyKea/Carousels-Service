@@ -210,4 +210,87 @@
   font-weight: normal;
 }
 
+#g-footer-container {
+  box-sizing: border-box;
+  width: calc(100vw - 8px);
+  max-width: calc(100vw - 15px);
+  font-family: "Noto Sans";
+  background-color: #0058a3;
+  color: #fff;
+  display: block;
+  padding: 1rem;
+  z-index: 500;
+}
+#g-footer-container .g-footer-linklist {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column {
+  width: 25%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 1rem;
+  margin-top: 2rem;
+  justify-content: left;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column .g-footer-linklist-heading {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  line-height: 2rem;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column .g-footer-linklist-heading .g-footer-icon {
+  outline-color: #fff;
+  fill: #fff;
+  color: #fff;
+  margin-right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column .g-footer-linklist-heading .g-footer-heading-title {
+  display: inline;
+  white-space: nowrap;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column .g-footer-linklist-link {
+  line-height: 2rem;
+}
+#g-footer-container .g-footer-linklist .g-footer-linklist-column .g-footer-linklist-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#g-footer-container .g-footer-social {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+#g-footer-container .g-footer-social .g-footer-social-link {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  line-height: 2rem;
+}
+#g-footer-container .g-footer-social .g-footer-social-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#g-footer-container .g-footer-social .g-footer-social-link .g-footer-icon {
+  outline-color: #fff;
+  fill: #fff;
+  color: #fff;
+  margin-right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+#g-footer-container .aw-b-g-m-t-credits {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 /*# sourceMappingURL=style.css.map */

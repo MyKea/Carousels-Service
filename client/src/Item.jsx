@@ -16,7 +16,7 @@ const Item = ({ item, onItemClick, containerWidth }) => (
       <div className="g-item-empty-stars">&nbsp;</div>
       <div className="g-item-full-stars" style={{ width: `${(item.rating / 5) * 100}%` }}>&nbsp;</div>
     </div>
-    <div className="g-item-rating">{`${item.rating} (${item.reviews})`}</div>
+    <div className="g-item-rating">{`${item.rating.toFixed(1)} (${item.reviews})`}</div>
     {item.hasOptions ? <div className="g-item-more">More options available</div> : ''}
   </button>
 );
