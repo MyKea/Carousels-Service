@@ -21,6 +21,7 @@ server.get('/products/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).end();
     });
 });
 
@@ -32,6 +33,19 @@ server.get('/products/:id/related/:type', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).end();
+    });
+});
+
+server.patch('/reviews/update', (req, res) => {
+  db.updateProductReviews(req.body)
+    .then((results) => {
+      console.log(results);
+      res.status(200).end();
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
     });
 });
 

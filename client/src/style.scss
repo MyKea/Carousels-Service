@@ -10,6 +10,7 @@ $arrow-color-inactive: #999;
 $arrow-color-active: #000;
 $arrow-fill-color-hover: #dfdfdf;
 $arrow-fill-color-active: #ccc;
+$IKEA-background: #0058a3;
 
 $full-star: url('./res/full-star.svg');
 $empty-star: url('./res/empty-star.svg');
@@ -225,5 +226,88 @@ $arrow-right: url('./res/arrow-right.svg');
         }
       }
     }
+  }
+}
+
+#g-footer-container {
+  box-sizing: border-box;
+  width: calc(100vw - 8px);
+  max-width: calc(100vw - 15px);
+  font-family: "Noto Sans";
+  background-color: $IKEA-background;
+  color: $font-color-secondary;
+  display: block;
+  padding: 1rem;
+  z-index: 500;
+  .g-footer-linklist {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .g-footer-linklist-column {
+      width: 25%;
+      display: flex;
+      justify-content: start;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 1rem;
+      margin-top: 2rem;
+      justify-content: left;
+      .g-footer-linklist-heading {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        line-height: 2rem;
+        .g-footer-icon {
+          outline-color: $font-color-secondary;
+          fill: $font-color-secondary;
+          color: $font-color-secondary;
+          margin-right: 0.5rem;
+          width: 2rem;
+          height: 2rem;
+        }
+        .g-footer-heading-title {
+          display: inline;
+          white-space: nowrap;
+        }
+      }
+      .g-footer-linklist-link{
+        line-height: 2rem;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .g-footer-social {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .g-footer-social-link {
+      margin: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      line-height: 2rem;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .g-footer-icon {
+        outline-color: $font-color-secondary;
+        fill: $font-color-secondary;
+        color: $font-color-secondary;
+        margin-right: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+  .aw-b-g-m-t-credits {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    text-align: center;
   }
 }
